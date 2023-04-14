@@ -20,10 +20,17 @@ public class LoginPage extends BaseTest {
 	
 	public void setUsername(String user)
 	{
+		try
+		{
 		//username.sendKeys(user);
 		//using BaseTest method to type text
 		waitForElement(username);
 		typeText(username,user);
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 	
 	public void setPassword(String pass)

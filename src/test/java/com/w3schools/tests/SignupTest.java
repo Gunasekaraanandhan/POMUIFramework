@@ -4,14 +4,19 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.w3schools.pages.SignupPage;
+import com.w3schools.utils.Reports;
 
 public class SignupTest extends SignupPage{
+	
+	Reports report = new Reports();
 	
 	@Test
 	public void signUpW3Schools() {
 		
 		try {
 			launchBrowser("https://profile.w3schools.com/sign-up");
+			
+			report.setTCDesc("validating sinup Test");
 			
 			SignupPage signupPage = PageFactory.initElements(driver, SignupPage.class);
 			

@@ -1,15 +1,17 @@
 package com.w3schools.utils;
 
+import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-public class Reports {
+public class Reports implements ITestListener {
 
 	//This class is used for generating the HTML report
 	public static ExtentSparkReporter sparkReporter;
@@ -57,18 +59,84 @@ public class Reports {
 		}
 	}
 	
-	public static void reportStep(String Status, String desc)
+	public static void reportStep(String status, String desc)
 	{
 		try
 		{
+			if(status.toUpperCase().equals("PASS"))
+			{
+				extentTest.log(Status.PASS, desc);
+			}
+			else if (status.toUpperCase().equals("FAIL"))
+			{
+				extentTest.log(Status.FAIL, desc);
+			}
+			else if(status.toUpperCase().equals("SKIP"))
+			{
+				extentTest.log(Status.SKIP, desc);
+			}
 			
 		}
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
 		}
-		
 	}
+	
+	
+	public void onTestSuccess(ITestResult result)
+	{
+		try
+		{
+			if(result.getStatus() == ITestResult.SUCCESS)
+			{
+				extentTest.log(Status.PASS, result.getName());
+			}
+			
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+	}
+	
+	
+	public void onTestFailure(ITestResult result)
+	{
+		try
+		{
+			if(result.getStatus() == ITestResult.FAILURE)
+			{
+				extentTest.log(Status.FAIL, result.getThrowable());
+			}
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+	}
+	
+	public void onTestSkipped(ITestResult result)
+	{
+		try
+		{
+			if(result.getStatus() == ITestResult.SKIP)
+			{
+				extentTest.log(Status.SKIP, result.getName());
+			}
+			
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	
 
 	@AfterSuite
 	public void endReport()

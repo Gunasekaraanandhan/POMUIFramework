@@ -2,22 +2,22 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-04-13T11:43:16 IST" name="Suite" finished-at="2023-04-13T11:43:40 IST" duration-ms="23936">
+  <suite started-at="2023-04-14T11:29:26 IST" name="Suite" finished-at="2023-04-14T11:30:29 IST" duration-ms="62144">
     <groups>
     </groups>
-    <test started-at="2023-04-13T11:43:16 IST" name="Test" finished-at="2023-04-13T11:43:40 IST" duration-ms="23936">
+    <test started-at="2023-04-14T11:29:26 IST" name="Test" finished-at="2023-04-14T11:30:29 IST" duration-ms="62144">
       <class name="com.w3schools.utils.Reports">
-        <test-method is-config="true" signature="startReport()[pri:0, instance:com.w3schools.utils.Reports@5d534f5d]" started-at="2023-04-13T11:43:16 IST" name="startReport" finished-at="2023-04-13T11:43:16 IST" duration-ms="414" status="PASS">
+        <test-method is-config="true" signature="startReport()[pri:0, instance:com.w3schools.utils.Reports@25641d39]" started-at="2023-04-14T11:29:25 IST" name="startReport" finished-at="2023-04-14T11:29:26 IST" duration-ms="1764" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startReport -->
-        <test-method is-config="true" signature="endReport()[pri:0, instance:com.w3schools.utils.Reports@5d534f5d]" started-at="2023-04-13T11:43:40 IST" name="endReport" finished-at="2023-04-13T11:43:41 IST" duration-ms="1098" status="PASS">
+        <test-method is-config="true" signature="endReport()[pri:0, instance:com.w3schools.utils.Reports@25641d39]" started-at="2023-04-14T11:30:29 IST" name="endReport" finished-at="2023-04-14T11:30:30 IST" duration-ms="1494" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endReport -->
       </class> <!-- com.w3schools.utils.Reports -->
       <class name="com.w3schools.tests.LoginTest">
-        <test-method signature="loginW3Schools()[pri:0, instance:com.w3schools.tests.LoginTest@1e0b4072]" started-at="2023-04-13T11:43:16 IST" name="loginW3Schools" finished-at="2023-04-13T11:43:40 IST" duration-ms="23892" status="PASS">
+        <test-method signature="loginW3Schools()[pri:0, instance:com.w3schools.tests.LoginTest@6574a52c]" started-at="2023-04-14T11:29:27 IST" name="loginW3Schools" finished-at="2023-04-14T11:30:29 IST" duration-ms="61993" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginW3Schools -->

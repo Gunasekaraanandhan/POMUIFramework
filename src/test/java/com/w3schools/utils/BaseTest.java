@@ -43,9 +43,12 @@ public class BaseTest {
 			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			driver.get(url);
+			Reports.reportStep("PASS", "Browser launched successfully with "+url );
 		} catch (Exception ex) {
-			ex.printStackTrace();
+		
 			System.out.println("Problem while launching Browser");
+			Reports.reportStep("FAIL", "Problem while launching the browser with "+url);
+			ex.printStackTrace();
 		}
 
 	}
@@ -53,7 +56,9 @@ public class BaseTest {
 	public void quitBrowser() {
 		try {
 			driver.quit();
+			Reports.reportStep("PASS", "Closing all the browsers");
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem while closing all the browsers");
 			ex.printStackTrace();
 		}
 	}
@@ -61,9 +66,11 @@ public class BaseTest {
 	public void closeBrowser() {
 		try {
 			driver.close();
-		}
+			Reports.reportStep("PASS", "Closing the active browser window");
 
+		}
 		catch (Exception ex) {
+			Reports.reportStep("FAIL", "Pooblem while closing the current browser window");
 			ex.printStackTrace();
 		}
 	}
@@ -72,7 +79,9 @@ public class BaseTest {
 		try {
 			ele.clear();
 			ele.sendKeys(text);
+			Reports.reportStep("PASS", "The "+text+" was entered succesfully to the "+ele);
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "The "+text+" was not entered to the "+ele);
 			ex.printStackTrace();
 		}
 	}
@@ -80,7 +89,9 @@ public class BaseTest {
 	public void clickAction(WebElement ele) {
 		try {
 			ele.click();
+			Reports.reportStep("PASS", "The "+ele+" was clicked succesfully");
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "The "+ele+" wasn't clicked");
 			ex.printStackTrace();
 		}
 	}
@@ -90,7 +101,9 @@ public class BaseTest {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.visibilityOf(ele));
 			wait.until(ExpectedConditions.elementToBeClickable(ele));
+			Reports.reportStep("PASS", "The "+ele+" waited successfully to meet the expected conditions");
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem while waiting for the "+ele);
 			ex.printStackTrace();
 		}
 
@@ -101,7 +114,11 @@ public class BaseTest {
 			WebDriverWait wait = new WebDriverWait(driver, timeOut);
 			wait.until(ExpectedConditions.visibilityOf(ele));
 			wait.until(ExpectedConditions.elementToBeClickable(ele));
+			Reports.reportStep("PASS", "The "+ele+" waited successfully to meet the expected conditions for "+timeOut);
+
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem while waiting for the "+ele+" with "+timeOut);
+
 			ex.printStackTrace();
 		}
 
@@ -123,7 +140,9 @@ public class BaseTest {
 		try {
 			Select sel = new Select(ele);
 			sel.selectByValue(value);
+			Reports.reportStep("PASS", "Selected the given "+value+" from the dropdown");
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem while selecting the given "+value+" from the dropdown");
 			ex.printStackTrace();
 		}
 
@@ -152,7 +171,9 @@ public class BaseTest {
 		try {
 			Alert alert = driver.switchTo().alert();
 			alert.accept();
+			Reports.reportStep("PASS", "Successfully accepted the alert");
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem while accepting the alert");
 			ex.printStackTrace();
 		}
 	}
@@ -174,9 +195,15 @@ public class BaseTest {
 			if (ele.isEnabled()) {
 				System.out.println("Pass : Element is enabled");
 				retVal=true;
+				Reports.reportStep("PASS", "The "+ele+" is enabled");
 			} else
+			{
 				System.out.println("Fail : Element is not enabled");
+				Reports.reportStep("FAIL", "The "+ele+" is not enabled");
+
+			}
 		} catch (Exception e) {
+			Reports.reportStep("FAIL", "The "+ele+" is not enabled");
 			e.printStackTrace();
 		}
 		return retVal;
