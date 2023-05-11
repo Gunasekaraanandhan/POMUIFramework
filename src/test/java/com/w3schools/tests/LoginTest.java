@@ -24,7 +24,7 @@ public class LoginTest extends BaseTest {
 			launchBrowser("https://profile.w3schools.com/log-in");
 			
 			LoginPage loginpage = PageFactory.initElements(driver, LoginPage.class);
-			ProfilePage profile = PageFactory.initElements(driver, ProfilePage.class);
+			//ProfilePage profile = PageFactory.initElements(driver, ProfilePage.class);
 
 			
 			loginpage.setUsername("gunasekaranandhan24@gmail.com");

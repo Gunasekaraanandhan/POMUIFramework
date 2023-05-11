@@ -6,10 +6,14 @@
 	</listeners>
 	<test thread-count="5" name="Test">
 		<classes>
-			<!-- <class name="com.w3schools.tests.SignupTest"/> <class name="com.w3schools.tests.VdeosBtnTest"/> 
-				<class name="com.w3schools.tests.BillingTest"/> <class name="com.w3schools.tests.CoursesAndExams2Test"/> 
-				<class name="com.w3schools.tests.CoursesAndExams1Test"/> <class name="com.w3schools.tests.LogoutTest"/> 
-				<class name="com.w3schools.tests.SearchJavaTest"/> <class name="com.w3schools.tests.ProfileTest"/> -->
+			<!-- <class name="com.w3schools.tests.SignupTest"/> 
+			     <class name="com.w3schools.tests.VdeosBtnTest"/> 
+				 <class name="com.w3schools.tests.BillingTest"/> 
+				 <class name="com.w3schools.tests.CoursesAndExams2Test"/> 
+				 <class name="com.w3schools.tests.CoursesAndExams1Test"/>
+				 <class name="com.w3schools.tests.LogoutTest"/> 
+				 <class name="com.w3schools.tests.SearchJavaTest"/> 
+				 <class name="com.w3schools.tests.ProfileTest"/> -->
 			<class name="com.w3schools.utils.BaseTest" />
 			<class name="com.w3schools.utils.Reports" />
 			<class name="com.w3schools.tests.LoginTest" />

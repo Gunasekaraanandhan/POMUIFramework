@@ -67,7 +67,6 @@ public class BaseTest {
 		try {
 			driver.close();
 			Reports.reportStep("PASS", "Closing the active browser window");
-
 		}
 		catch (Exception ex) {
 			Reports.reportStep("FAIL", "Pooblem while closing the current browser window");
@@ -130,7 +129,9 @@ public class BaseTest {
 					.pollingEvery(Duration.ofSeconds(2));
 			wait.until(ExpectedConditions.visibilityOf(ele));
 			wait.until((ExpectedConditions.elementToBeClickable(ele)));
+			Reports.reportStep("PASS", "The "+ele+" waited successfully to meet the expected conditions using polling period time");
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL",  "Problem while waiting for the "+ele+" using with polling time");
 			ex.printStackTrace();
 		}
 
@@ -152,7 +153,9 @@ public class BaseTest {
 		try {
 			Select sel = new Select(ele);
 			sel.selectByIndex(index);
+			Reports.reportStep("PASS", "Selected the given "+index+" from the dropdown");
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem while selecting the given "+index+" from the dropdown");
 			ex.printStackTrace();
 		}
 
@@ -162,7 +165,9 @@ public class BaseTest {
 		try {
 			Select sel = new Select(ele);
 			sel.selectByVisibleText(VisibleText);
+			Reports.reportStep("PASS", "Selected the given "+VisibleText+" from the dropdown");
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem while selecting the given "+VisibleText+" from the dropdown");
 			ex.printStackTrace();
 		}
 	}
@@ -182,7 +187,9 @@ public class BaseTest {
 		try {
 			Alert alert = driver.switchTo().alert();
 			alert.dismiss();
+			Reports.reportStep("PASS", "Successfully dismiss the alert");
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem while dismiss the alert");
 			ex.printStackTrace();
 		}
 	}
@@ -200,7 +207,6 @@ public class BaseTest {
 			{
 				System.out.println("Fail : Element is not enabled");
 				Reports.reportStep("FAIL", "The "+ele+" is not enabled");
-
 			}
 		} catch (Exception e) {
 			Reports.reportStep("FAIL", "The "+ele+" is not enabled");
@@ -216,14 +222,15 @@ public class BaseTest {
 			if (ele.isDisplayed()) {
 				System.out.println("Pass : Element is Displayed");
 				retVal=true;
-				
-				
+				Reports.reportStep("PASS", "The "+ele+" is Displayed");
 			} else
 			{
 				System.out.println("Fail : Element is Displayed");
+				Reports.reportStep("FAIL", "The "+ele+" is not Displayed");
 			}
 			
 		} catch (Exception e) {
+			Reports.reportStep("FAIL", "The "+ele+" is not Displayed");
 			e.printStackTrace();
 		}
 		return retVal;
@@ -235,9 +242,14 @@ public class BaseTest {
 			if (ele.isSelected()) {
 				System.out.println("Pass : Element is Selected");
 				retVal=true;
+				Reports.reportStep("PASS", "The "+ele+" is Selected");
 			} else
+			{
 				System.out.println("Fail : Element is Selected");
+				Reports.reportStep("FAIL", "The "+ele+" is not Selected");
+			}
 		} catch (Exception e) {
+			Reports.reportStep("FAIL", "The "+ele+" is not Selected");
 			e.printStackTrace();
 		}
 		return retVal;
@@ -247,7 +259,9 @@ public class BaseTest {
 	public void framesByIndex(int index) {
 		try {
 			driver.switchTo().frame(index);
+			Reports.reportStep("PASS", "The frame is switched successfully using index number" +index);
 		} catch (Exception e) {
+			Reports.reportStep("FAIL", "Problem while switching the frame using index number"+index);
 			e.printStackTrace();
 		}
 	}
@@ -255,7 +269,9 @@ public class BaseTest {
 	public void framesByWebElement(WebElement ele) {
 		try {
 			driver.switchTo().frame(ele);
+			Reports.reportStep("PASS", "The frame is swicthed successfully using WebElement " +ele);
 		} catch (Exception e) {
+			Reports.reportStep("FAIL", "Problem while switching the frame using WebElement"+ele);
 			e.printStackTrace();
 		}
 	}
@@ -263,7 +279,9 @@ public class BaseTest {
 	public void framesByNameOrID(String nameOrID) {
 		try {
 			driver.switchTo().frame(nameOrID);
+			Reports.reportStep("PASS", "The frame is swicthed successfully using Name Or ID Attributes " +nameOrID);
 		} catch (Exception e) {
+			Reports.reportStep("FAIL", "Problem while switching the frame using NameOrId Attributes"+nameOrID);
 			e.printStackTrace();
 		}
 	}
@@ -271,7 +289,9 @@ public class BaseTest {
 	public void framesByDefault() {
 		try {
 			driver.switchTo().defaultContent();
+			Reports.reportStep("PASS", "The frame is swicthed to parent frame successfully");
 		} catch (Exception e) {
+			Reports.reportStep("FAIL", "Problem while switching the parent frame ");
 			e.printStackTrace();
 		}
 	}
@@ -281,7 +301,9 @@ public class BaseTest {
 
 			Actions act = new Actions(driver);
 			act.moveToElement(ele).contextClick().build().perform();
+			Reports.reportStep("PASS", "The "+ele+" rightclicked on the webelement successfully");
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem while"+ele+ "rightclicking on the webelement ");
 			ex.printStackTrace();
 		}
 	}
@@ -290,7 +312,9 @@ public class BaseTest {
 		try {
 			Actions act = new Actions(driver);
 			act.moveToElement(ele).build().perform();
+			Reports.reportStep("PASS", "The "+ele+" was movoTo element succesfully");
 		} catch (Exception ex) {
+			Reports.reportStep("PASS", "The "+ele+" wasn't moveTo  element");
 			ex.printStackTrace();
 		}
 	}
@@ -300,7 +324,9 @@ public class BaseTest {
 		try {
 			Actions act = new Actions(driver);
 			act.dragAndDrop(source, target).build().perform();
+			Reports.reportStep("PASS", "Element has been moved from"+source+"to"+target+"successfully");
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem while moving the element from"+source+"to"+target);
 			ex.printStackTrace();
 		}
 	}
@@ -310,7 +336,9 @@ public class BaseTest {
 		try {
 			Actions act = new Actions(driver);
 			act.doubleClick(ele).build().perform();
+			Reports.reportStep("PASS", "The "+ele+" has been doubleclicked succesfully");
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "The "+ele+" wasn't doubleclicked");
 			ex.printStackTrace();
 		}
 	}
@@ -320,7 +348,9 @@ public class BaseTest {
 		try {
 			Actions act = new Actions(driver);
 			act.clickAndHold(source).moveToElement(target).build().perform();
+			Reports.reportStep("PASS", "Element has click and holded from"+source+"to"+target+"successfully");
 		} catch (Exception ex) {
+			Reports.reportStep("FAIL", "Problem while click and holding the element from"+source+"to"+target);
 			ex.printStackTrace();
 		}
 	}
@@ -330,7 +360,9 @@ public class BaseTest {
 		try {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("window.scrollBy(0," + value + ")");
+			Reports.reportStep("PASS", "Scroll action(up/down) has been done successfully"+value);
 		} catch (Exception e) {
+			Reports.reportStep("FAIL", "Problem while doing Scroll action(up/down)"+value);
 			e.printStackTrace();
 		}
 	}
@@ -339,7 +371,9 @@ public class BaseTest {
 		try {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("window.scrollBy(" + value + ",0)");
+			Reports.reportStep("PASS", "Scroll action(right/left)  has been done successfully"+value);
 		} catch (Exception e) {
+			Reports.reportStep("FAIL", "Problem while doing Scroll action(right/left)"+value);
 			e.printStackTrace();
 		}
 	}
@@ -348,7 +382,9 @@ public class BaseTest {
 		try {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("arguments[0].scrollIntoView(true);", ele);
+			Reports.reportStep("PASS", "Scroll action has been done successfully upto finding that"+ele);
 		} catch (Exception e) {
+			Reports.reportStep("FAIL", "Problem while doing Scroll action upto find that"+ele);
 			e.printStackTrace();
 		}
 	}
@@ -357,7 +393,9 @@ public class BaseTest {
 		try {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("arguments[0].click()", ele);
+			Reports.reportStep("PASS", "The "+ele+" was clicked succesfully");
 		} catch (Exception e) {
+			Reports.reportStep("FAIL", "The "+ele+" wasn't clicked succesfully");
 			e.printStackTrace();
 		}
 	}
@@ -366,7 +404,9 @@ public class BaseTest {
 		try {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			System.out.println(js.executeScript("return document.title").toString());
+			Reports.reportStep("PASS", "The title has been taken successfully");
 		} catch (Exception e) {
+			Reports.reportStep("FAIL", "Problem while taking the title");
 			e.printStackTrace();
 		}
 	}
@@ -379,7 +419,9 @@ public class BaseTest {
 			File dest = new File("./ssphotos/" + ssname + ".png");
 
 			FileUtils.copyFile(source, dest);
+			Reports.reportStep("PASS", "The ScreenShot has been done successfully");
 		} catch (Exception e) {
+			Reports.reportStep("FAIL", "Problem while taking the ScreenShot ");
 			e.printStackTrace();
 		}
 	}
@@ -396,14 +438,23 @@ public class BaseTest {
 					driver.switchTo().window(adr);
 				}
 				System.out.println(adr);
+				Reports.reportStep("PASS", "The widow has been handled successfully");
 			}
+			
 		} catch (Exception e) {
+			Reports.reportStep("FAIL", "Problem while handling the widow");
 			e.printStackTrace();
 		}
 	}
 	
 	public void fileUploadSendKeys(WebElement ele, String path ) {
-		ele.sendKeys(path);
+		try {
+			ele.sendKeys(path);
+			Reports.reportStep("PASS", "The"+ele+" file has been uploaded successfully");
+		} catch (Exception e) {
+			Reports.reportStep("FAIL", "Problem while uploading the file"+ele);
+			e.printStackTrace();
+		}
 	}
 	
 	public void fileAndClickUsingSikuli(String fileName) {
